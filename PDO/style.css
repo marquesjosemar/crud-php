@@ -1,0 +1,23 @@
+.banner{
+    float:left;
+    width:100%;
+}
+
+.banner img{
+    
+    width:100%;
+}
+
+.nav{float:left; width:100%; background:#000;}
+    .nav li{float:left; width:25%; text-align: center; list-style: none;}
+    .nav{display: block; width:100%; padding: 16px 0;; color: #fff; font-weight: bold; text-decoration: none;}
+    .nav a:hover{background: #666;}
+
+footer {
+        background-color: #056970;
+        color: #fff;
+        padding: 10px 20px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+}
