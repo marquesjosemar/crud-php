@@ -71,6 +71,31 @@
             echo "Erro: ".$erro->getMessage();
         }
     }
+
+    //ATUALIZANDO DADOS NO BANCO - UPDATE
+    if ($id != "") {
+        $stmt = $conexao->prepare("UPDATE cadastro SET nome=?, email=?, celular=? WHERE id = ?");
+        $stmt->bindParam(4, $id);
+    } else {
+        $stmt = $conexao->prepare("INSERT INTO cadastro (nome, email, celular) VALUES (?, ?, ?)");
+    }
+
+    //DELETANDO -DELETE
+    if (isset($_REQUEST["act"]) && $_REQUEST["act"] == "del" && $id != "") {
+        try {
+            $stmt = $conexao->prepare("DELETE FROM cadastro WHERE id = ?");
+            $stmt->bindParam(1, $id, PDO::PARAM_INT);
+            if ($stmt->execute()) {
+                echo "Registo foi excluído com êxito";
+                echo "<script>window.alert('Usuario apagado com sucesso. Clique em OK pra sair!')</script>";
+                $id = null;
+            } else {
+                throw new PDOException("Erro: Não foi possível executar a declaração sql");
+            }
+        } catch (PDOException $erro) {
+            echo "Erro: ".$erro->getMessage();
+        }
+    }
 ?>
 
 <!DOCTYPE html>
